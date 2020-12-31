@@ -4,6 +4,11 @@
 
 python api.py 9999 & sleep 2
 
+
+#GET method train
+
+curl -X GET http://localhost/train && echo -e '\n train OK'
+
 #POST predict method
 curl -d '[
     
@@ -16,7 +21,3 @@ curl -d '[
 
 #GET method wipe
 curl -X GET http://localhost:9999/wipe && echo -e '\n -> wipe OK'
-
-#GET method train
-
-curl -X GET http://localhost/train && echo -e '\n train OK'

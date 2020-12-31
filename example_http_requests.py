@@ -2,7 +2,7 @@ import requests
 
 from loguru import logger
 
-host = "http://localhost:80"
+host = "http://localhost:9999"
 
 r = requests.get(f"{host}/train")
 logger.info(r.text)
@@ -17,6 +17,8 @@ payload = [
 r = requests.post(f"{host}/predict", json=payload)
 logger.info(r.text)
 
+
+#if you dont want to remove the model.comment the following code
 r = requests.get(f"{host}/wipe")
 logger.info(r.text)
 
