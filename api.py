@@ -7,7 +7,7 @@ from loguru import logger
 
 from flask import Flask, request, jsonify
 import pandas as pd
-from sklearn.externals import joblib
+import joblib
 from sklearn.ensemble import RandomForestClassifier as rf
 
 
@@ -58,17 +58,17 @@ def train():
     categoricals = []
 
     for col, col_type in df_.dtypes.iteritems():
-        if col_type == "0":
+        if col_type == "O":
             categoricals.append(col)
         else:
             df_[col].fillna(0, inplace=True)
 
     df_one_hot_encode = pd.get_dummies(df_, columns=categoricals, dummy_na=True)
-    X = df_one_hot_encode[df_one_hot_encode.columns.difference(DEPENDENT_VARIABLE)]
+    X = df_one_hot_encode[df_one_hot_encode.columns.difference([DEPENDENT_VARIABLE])]
     y = df_one_hot_encode[DEPENDENT_VARIABLE]
 
     global model_columns
-    model_columns = list(x.columns)
+    model_columns = list(X.columns)
     joblib.dump(model_columns, MODEL_COLUMN_FILE_NAME)
 
     global clf

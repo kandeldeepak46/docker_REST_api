@@ -2,7 +2,7 @@ import requests
 
 from loguru import logger
 
-host = "http://localhost:9999"
+host = "http://localhost:80"
 
 r = requests.get(f"{host}/train")
 logger.info(r.text)
